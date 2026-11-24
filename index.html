@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WattWann – Der Strompreis-Wecker</title>
+  <meta name="description" content="Wann ist Strom billig oder kostenlos? WattWann zeigt dir die günstigsten Stunden und was du dann laufen lassen solltest." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="bolt">⚡</span>
+      <h1>WattWann</h1>
+      <span class="tagline">Der Strompreis-Wecker</span>
+    </div>
+    <div id="status" class="status">Lade Preise …</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="now-card" id="now-card">
+        <div class="now-label">Strompreis <strong>jetzt</strong></div>
+        <div class="now-price" id="now-price">–</div>
+        <div class="now-verdict" id="now-verdict">–</div>
+        <div class="now-tip" id="now-tip">–</div>
+      </div>
+      <div class="hero-side">
+        <div class="mini" id="mini-negative">
+          <span class="mini-num" id="neg-hours">–</span>
+          <span class="mini-text">Stunden mit <em>Geld-zurück-Strom</em> heute</span>
+        </div>
+        <div class="mini" id="mini-cheap">
+          <span class="mini-num" id="cheap-window">–</span>
+          <span class="mini-text">günstigstes 6-Stunden-Fenster</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="chart-section">
+      <h2>24-Stunden-Vorschau <span class="unit" id="unit-label">(ct/kWh)</span></h2>
+      <div class="legend">
+        <span><i class="dot neg"></i>Negativ / gratis</span>
+        <span><i class="dot cheap"></i>günstig</span>
+        <span><i class="dot mid"></i>normal</span>
+        <span><i class="dot exp"></i>teuer</span>
+      </div>
+      <div id="chart" class="chart" role="img" aria-label="Strompreis-Verlauf der nächsten 24 Stunden"></div>
+      <label class="surcharge">
+        Tarif-Aufschlag: <input type="number" id="surcharge" value="12" min="0" max="60" step="1" /> ct/kWh
+        <span class="hint">→ dein Endpreis = Börsenpreis + Aufschlag</span>
+      </label>
+    </section>
+
+    <section class="plan-section">
+      <h2>Was läuft wann? – dein Tagesplan</h2>
+      <div id="plan" class="plan"></div>
+    </section>
+
+    <section class="sim-section">
+      <h2>🤖 Auto-Modus – Simulator</h2>
+      <p class="sim-intro">So würde eine intelligente Steckdose (z.&nbsp;B. Shelly/Tasmota) deine Geräte jeden Tag automatisch in die günstigsten Stunden verschieben – ohne dass du etwas tust. Sieben simulierte Tage, fünf typische Geräte.</p>
+      <div class="sim-toggle">
+        <label class="switch">
+          <input type="checkbox" id="auto-mode" checked />
+          <span class="slider"></span>
+        </label>
+        <span id="sim-status" class="sim-status on">Auto-Modus: AN – Geräte starten im günstigsten Fenster des Tages</span>
+      </div>
+      <div id="sim-total" class="sim-total"></div>
+      <div id="sim-week" class="sim-week"></div>
+      <div id="sim-runs" class="sim-runs"></div>
+    </section>
+
+    <section class="calc-section">
+      <h2>Spar-Rechner</h2>
+      <div class="calc-grid">
+        <label>Haushaltsverbrauch
+          <input type="number" id="usage" value="3500" min="500" max="25000" step="100" /> kWh/Jahr
+        </label>
+        <label>Dein Festpreis-Tarif
+          <input type="number" id="flat" value="35" min="5" max="100" step="1" /> ct/kWh
+        </label>
+        <button id="calc-btn">Berechnen</button>
+      </div>
+      <div id="calc-result" class="calc-result"></div>
+      <p class="disclaimer" id="disclaimer"></p>
+    </section>
+
+    <section class="howto">
+      <h2>Wie verdient man damit Geld?</h2>
+      <ol>
+        <li><strong>Dynamischen Tarif wählen</strong>, der Negativpreise sogar weitergibt (z.&nbsp;B. regionale Grundversorger mit Tagesspot-Preis).</li>
+        <li><strong>Verbrauch verschieben:</strong> Waschmaschine, Trockner, Geschirrspüler, Boiler, E-Auto oder Powerbank in die grünen (negativen) Stunden legen.</li>
+        <li><strong>Klassisch sparen:</strong> Wer verschieben kann, zahlt im Schnitt deutlich weniger als beim Festpreis.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>WattWann · rein statisch, ohne Backend · Demo-Daten, wenn keine Live-Preise erreichbar sind.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
